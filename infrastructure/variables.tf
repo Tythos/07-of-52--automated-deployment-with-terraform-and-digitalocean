@@ -12,3 +12,8 @@ variable "DROPLET_SIZE" {
   type        = string
   description = "DigitalOcean slug for VM sizing"
 }
+
+variable "DO_VOLUME_ID" {
+  type        = string
+  description = "Identifier from static files volume"
+}

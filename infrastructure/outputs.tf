@@ -6,3 +6,7 @@ output "SSH_KEY" {
 output "PUBLIC_IP" {
   value = digitalocean_droplet.deploydroplet.ipv4_address
 }
+
+output "DROPLET_URN" {
+  value = digitalocean_droplet.deploydroplet.urn
+}
