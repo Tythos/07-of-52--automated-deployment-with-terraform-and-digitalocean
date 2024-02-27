@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # update and install
+export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y nginx unzip certbot python3-certbot-nginx python3-pip python3-certbot-dns-digitalocean
 
@@ -18,6 +19,7 @@ certbot certonly \
     --dns-digitalocean-credentials ~/certbot-creds.ini \
     --agree-tos \
     --email ${ACME_EMAIL} \
+    --no-eff-email  \\
     -d ${HOST_NAME} \
     -d www.${HOST_NAME}
 

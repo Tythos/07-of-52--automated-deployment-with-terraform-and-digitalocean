@@ -43,7 +43,7 @@ resource "digitalocean_droplet" "deploydroplet" {
 
   provisioner "remote-exec" {
     inline = [
-      "ls -al /tmp",
+      # "ls -al /tmp",
       "chmod +x /tmp/setup.sh",
       "echo Running setup script...",
       "bash /tmp/setup.sh"
