@@ -6,8 +6,20 @@ resource "digitalocean_droplet" "deploydroplet" {
   ssh_keys = [digitalocean_ssh_key.sshkey.id]
 
   provisioner "file" {
-    source      = "${path.module}/nginx.conf"
+    source      = local_file.nginxconf.filename
     destination = "/tmp/nginx.conf"
+
+    connection {
+      type        = "ssh"
+      user        = "root"
+      private_key = tls_private_key.privatekey.private_key_pem
+      host        = self.ipv4_address
+    }
+  }
+
+  provisioner "file" {
+    source      = local_file.setupsh.filename
+    destination = "/tmp/setup.sh"
 
     connection {
       type        = "ssh"
@@ -31,12 +43,8 @@ resource "digitalocean_droplet" "deploydroplet" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update",
-      "sudo apt-get install -y nginx unzip certbot python3-certbot-nginx",
-      "sudo mv /tmp/nginx.conf /etc/nginx/nginx.conf",
-      "sudo unzip -o /tmp/static.zip -d /var/www/html",
-      "sudo certbot certonly --dns-digitalocean --dns-digitalocean-credentials ~/.secrets/certbot/digitalocean.ini -d ${var.HOST_NAME}",
-      "sudo systemctl restart nginx",
+      "echo Running setup script...",
+      #"source /tmp/setup.sh"
     ]
 
     connection {
