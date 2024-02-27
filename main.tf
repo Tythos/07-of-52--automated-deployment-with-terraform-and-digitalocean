@@ -9,4 +9,5 @@ module "infrastruture" {
   DROPLET_SIZE        = var.DROPLET_SIZE
   DROPLET_IMAGE       = var.DROPLET_IMAGE
   STATIC_ARCHIVE_PATH = module.application.STATIC_ARCHIVE_PATH
+  HOST_NAME           = var.HOST_NAME
 }

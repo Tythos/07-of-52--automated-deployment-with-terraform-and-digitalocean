@@ -17,3 +17,8 @@ variable "STATIC_ARCHIVE_PATH" {
   type        = string
   description = "Local path to automatically-generated archive of static file content"
 }
+
+variable "HOST_NAME" {
+  type        = string
+  description = "Domain name to register and automate with DigitalOcean"
+}

@@ -14,7 +14,7 @@ http {
 
     server {
         listen 80;
-        server_name localhost;
+        server_name ${HOST_NAME};
         root /var/www/html;
         index index.html;
 

@@ -32,9 +32,10 @@ resource "digitalocean_droplet" "deploydroplet" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",
-      "sudo apt-get install -y nginx unzip",
+      "sudo apt-get install -y nginx unzip certbot python3-certbot-nginx",
       "sudo mv /tmp/nginx.conf /etc/nginx/nginx.conf",
       "sudo unzip -o /tmp/static.zip -d /var/www/html",
+      "sudo certbot certonly --dns-digitalocean --dns-digitalocean-credentials ~/.secrets/certbot/digitalocean.ini -d ${var.HOST_NAME}",
       "sudo systemctl restart nginx",
     ]
 
