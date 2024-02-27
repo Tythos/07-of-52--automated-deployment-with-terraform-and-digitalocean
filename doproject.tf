@@ -1,10 +1,10 @@
-resource "digitalocean_project" "infrastructureproject" {
-  name        = "infrastructureproject"
+resource "digitalocean_project" "doproject" {
+  name        = "doproject"
   description = "A project to represent development resources."
   purpose     = "Web Application"
   environment = "Development"
 
   resources = [
-    digitalocean_droplet.deploydroplet.urn
+    # i suppose we'll figure this out later
   ]
 }
