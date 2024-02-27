@@ -9,6 +9,11 @@ terraform {
       source  = "hashicorp/tls"
       version = "4.0.5"
     }
+
+    archive = {
+      source  = "hashicorp/archive"
+      version = "2.4.2"
+    }
   }
 }
 
@@ -17,4 +22,7 @@ provider "digitalocean" {
 }
 
 provider "tls" {
+}
+
+provider "archive" {
 }

@@ -5,7 +5,6 @@ resource "digitalocean_project" "doproject" {
   environment = "Development"
 
   resources = [
-    module.application.VOLUME_URN,
-    module.infrastruture.DROPLET_URN
+    digitalocean_droplet.deploydroplet.urn
   ]
 }

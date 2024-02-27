@@ -13,7 +13,7 @@ variable "DROPLET_SIZE" {
   description = "DigitalOcean slug for VM sizing"
 }
 
-variable "DO_VOLUME_ID" {
+variable "STATIC_ARCHIVE_PATH" {
   type        = string
-  description = "Identifier from static files volume"
+  description = "Local path to automatically-generated archive of static file content"
 }
