@@ -14,7 +14,7 @@ http {
 
     server {
         listen 80;
-        server_name gobannus.io;
+        server_name ${HOST_NAME};
         return 301 https://$host$request_uri;
     }
 
