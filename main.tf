@@ -13,3 +13,7 @@ module "infrastructure" {
   ACME_EMAIL          = var.ACME_EMAIL
   DO_TOKEN            = var.DO_TOKEN
 }
+
+# module "serverconfig" {
+#   source = "./serverconfig"
+# }
