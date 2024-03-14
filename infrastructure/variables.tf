@@ -32,3 +32,8 @@ variable "ACME_EMAIL" {
   type        = string
   description = "Contact email for cert challenges and renewal notice"
 }
+
+variable "ARCHIVE_PATH" {
+  type        = string
+  description = "Path to the archived bundle of static files to copy into the VM"
+}

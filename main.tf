@@ -12,4 +12,5 @@ module "infrastructure" {
   HOST_NAME           = var.HOST_NAME
   ACME_EMAIL          = var.ACME_EMAIL
   DO_TOKEN            = var.DO_TOKEN
+  ARCHIVE_PATH        = "${path.module}/application/static.zip"
 }

@@ -8,7 +8,11 @@ So. You need something modest, automation-friendly, and at just the right level 
 
 ## Provider and Project
 
-Let's start with the basic provider configuration. The DigitalOcean provider docs for Terraform are first-class. We'll use a modular approach in which the top-level Terraform project has several subfolders for different units of code, which means the "entry point" is just a `main.tf` that defines how those different modules are integrated together. We'll focus on two modules in particular, an `application` module (that will define the static files we are deploying) and an `infrastructure`  module (that will define the resources used to serve our app). Create empty folders for both.
+Let's start with the basic provider configuration. The DigitalOcean provider docs for Terraform are first-class.
+
+https://registry.terraform.io/providers/digitalocean/digitalocean/latest
+
+We'll use a modular approach in which the top-level Terraform project has several subfolders for different units of code, which means the "entry point" is just a `main.tf` that defines how those different modules are integrated together. We'll focus on two modules in particular, an `application` module (that will define the static files we are deploying) and an `infrastructure`  module (that will define the resources used to serve our app). Create empty folders for both.
 
 That means your top-level `main.tf` will start off looking something like this:
 
