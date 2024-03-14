@@ -114,12 +114,12 @@ variable "DROPLET_SIZE" {
 }
 ```
 
-This will be enough for us to deploy a VM, or "droplet" as DigitalOcean calls them. Create a `deploydroplet.tf` file and 
+This will be enough for us to deploy a VM, or "droplet" as DigitalOcean calls them. Create a `dodroplet.tf` file and 
 
 ```tf
-resource "digitalocean_droplet" "deploydroplet" {
+resource "digitalocean_droplet" "dodroplet" {
   image    = var.DROPLET_IMAGE
-  name     = "deploydroplet"
+  name     = "dodroplet"
   region   = var.DO_REGION
   size     = var.DROPLET_SIZE
 }
@@ -135,7 +135,7 @@ resource "digitalocean_project" "doproject" {
   environment = "Development"
 
   resources = [
-    digitalocean_droplet.deploydroplet.urn
+    digitalocean_droplet.dodroplet.urn
   ]
 }
 ```

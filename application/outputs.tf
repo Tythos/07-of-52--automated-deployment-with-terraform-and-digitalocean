@@ -1,3 +1,3 @@
-output "STATIC_ARCHIVE_PATH" {
-  value = data.archive_file.staticarchive.output_path
+output "ARCHIVE_PATH" {
+  value = abspath(data.archive_file.staticarchive.output_path)
 }

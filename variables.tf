@@ -3,6 +3,16 @@ variable "DO_TOKEN" {
   description = "API token for DigitalOcean"
 }
 
+variable "DO_SPACES_ID" {
+  type        = string
+  description = "Identifies DigitalOcean Spaces identifier for bucket object storage API"
+}
+
+variable "DO_SPACES_KEY" {
+  type        = string
+  description = "Defines private key for DigitalOcean Spaces bucket object storage API"
+}
+
 variable "DO_REGION" {
   type        = string
   description = "Region into which DigitalOcean resources will be deployed"

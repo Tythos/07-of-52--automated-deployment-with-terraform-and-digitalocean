@@ -27,13 +27,15 @@ terraform {
 
     ansible = {
       version = "~> 1.2.0"
-      source = "ansible/ansible"
+      source  = "ansible/ansible"
     }
   }
 }
 
 provider "digitalocean" {
-  token = var.DO_TOKEN
+  token             = var.DO_TOKEN
+  spaces_access_id  = var.DO_SPACES_ID
+  spaces_secret_key = var.DO_SPACES_KEY
 }
 
 provider "tls" {

@@ -4,5 +4,5 @@ output "SSH_KEY" {
 }
 
 output "PUBLIC_IP" {
-  value = digitalocean_droplet.deploydroplet.ipv4_address
+  value = digitalocean_droplet.dodroplet.ipv4_address
 }

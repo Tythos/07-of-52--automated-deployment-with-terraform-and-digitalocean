@@ -5,8 +5,8 @@ resource "digitalocean_project" "doproject" {
   environment = "Development"
 
   resources = [
-    digitalocean_droplet.deploydroplet.urn,
+    digitalocean_droplet.dodroplet.urn,
     digitalocean_domain.dodomain.urn,
-    digitalocean_volume.dovolume.urn
+    digitalocean_spaces_bucket.dobucket.urn
   ]
 }
