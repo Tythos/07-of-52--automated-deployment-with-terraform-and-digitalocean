@@ -9,4 +9,10 @@ resource "digitalocean_project" "doproject" {
     digitalocean_domain.dodomain.urn,
     digitalocean_spaces_bucket.dobucket.urn
   ]
+
+  depends_on = [
+    digitalocean_droplet.dodroplet,
+    digitalocean_domain.dodomain,
+    digitalocean_spaces_bucket.dobucket
+  ]
 }
