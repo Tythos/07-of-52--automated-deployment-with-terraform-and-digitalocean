@@ -1,4 +1,4 @@
-resource "digitalocean_spaces_bucket_object" "dobucketobject" {
+resource "digitalocean_spaces_bucket_object" "dobucketarchiveobject" {
   region = var.DO_REGION
   bucket = digitalocean_spaces_bucket.dobucket.name
   key    = "static.zip"
