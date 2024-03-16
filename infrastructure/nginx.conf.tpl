@@ -12,7 +12,7 @@ http {
         listen 80;
         server_name ${HOST_NAME};
         root /var/www/html;
-        index index.html index.html;
+        index index.htm index.html;
 
         location / {
             try_files $uri $uri/ =404;

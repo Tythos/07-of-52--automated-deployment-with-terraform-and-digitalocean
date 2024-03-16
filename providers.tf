@@ -19,16 +19,6 @@ terraform {
       source  = "hashicorp/template"
       version = "2.2.0"
     }
-
-    local = {
-      source  = "hashicorp/local"
-      version = "2.4.1"
-    }
-
-    ansible = {
-      version = "~> 1.2.0"
-      source  = "ansible/ansible"
-    }
   }
 }
 
@@ -45,10 +35,4 @@ provider "archive" {
 }
 
 provider "template" {
-}
-
-provider "local" {
-}
-
-provider "ansible" {
 }
