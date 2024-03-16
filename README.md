@@ -161,7 +161,7 @@ output "ARCHIVE_PATH" {
 
 That's actually it for our `application` module. You can even run `terraform apply` before you add anything else (if you disable the `infrastructure` module first) to see it execute. It doesn't take a lot of imagination to picture how these static contents could come from a packing tool (like Webpack, Vite, Browserify, or others) that generates your static assets from a more complicated codebase--perhaps even hooking that project in as a submodule.
 
-## Preliminary Infrastructure (Pre-Droplet)
+## Infrastructure, Pre-Droplet
 
 There's a lot of resources we'll need to set up within our `infrastructure` folder before we can deploy our VM (or "Droplet" as DigitalOcean calls it). First, let's define the variables this module will need. You may recall these were already referenced in our top-level Terraform, but let's add these to `infrastructure/variables.tf` now:
 
@@ -252,7 +252,7 @@ https://cloudinit.readthedocs.io/en/latest/index.html
 
 The other template we'll need to define is our Nginx configuration. Create a `infrastructure/nginx.conf.tpl` file and populate it with the following:
 
-```conf
+```nginx
 worker_processes 1;
 
 events {
@@ -314,7 +314,7 @@ data "template_file" "nginx_conf" {
 
 Most of this is self-explanatory, but there's a key missing piece: We haven't defined a bucket to which our static assets will be uploaded yet. Let's do that now.
 
-> IMPORTANT: Make sure, in addition to having a DigitalOcean API token, you have also registered specific Spaces credentials; these are *NOT* the same thing!
+> **IMPORTANT: Make sure, in addition to having a DigitalOcean API token, you have also registered specific Spaces credentials; these are *NOT* the same thing!**
 
 Create a `infrastructure/dobucket.tf` resource and give it a unique name:
 
@@ -373,7 +373,7 @@ resource "digitalocean_ssh_key" "sshkey" {
 
 Take a break, you've earned it! You can deploy these resources if you want to verify them. But next, we'll do the actual VM!
 
-## Infrastructure (Droplet)
+## It's Droplet Time, Baby!
 
 DigitalOcean calls their VMs "Droplets". We're ready to create our Droplet resource, which will combine a lot of the resources we've written so far.
 
@@ -408,7 +408,7 @@ What's going into this resource?
 
 1. We explicitly flag a dependency on the objects in our Spaces bucket to make sure they have been uploaded before our VM spins up; since these dependencies are otherwise implicit, Terraform needs a little help understanding the relationship.
 
-## Infrastructure (Post-Droplet)
+## Infrastructure, Post-Droplet
 
 Once the VM is created, we have a resource with a specific address and a specific key. This is enough to depoy our remaining resources, but let's SSH in just to poke around a bit. To do so, we'll need to export the SSH key and public IP address--first from the module, then from the top level. Create an `infrastructure/outputs.tf` file that does so:
 
@@ -436,13 +436,14 @@ output "PUBLIC_IP" {
 }
 ```
 
-Now you can do the following:
+Now you can do the following (replacing the public IP with the correct address, of course):
 
 ```sh
-$ terraform apply
-$ terraform output -raw SSH_KEY > id_rsa
-$ set PUBLIC_IP=$(terraform output PUBLIC_IP)
-$ ssh -i id_rsa root@$PUBLIC_IP
+> terraform apply
+> terraform output -raw SSH_KEY > id_rsa
+> terraform output PUBLIC_IP
+1.2.3.4
+> ssh -i id_rsa root@1.2.3.4
 ```
 
 I've conveniently added `id_rsa` to the `.gitignore` we initially defined, specifically for this usecase. Being able to SSH in isn't technically required to deploy our application but I find it's very help when you're learning (not to mention verifying and debugging) to be able to log in and "poke around" the system.
